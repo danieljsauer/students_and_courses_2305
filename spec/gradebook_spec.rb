@@ -63,13 +63,11 @@ RSpec.describe Course do
       student2.log_score(80)
       student3.log_score(70)
 
-      expect(@gradebook.students_below(75)). to be_an(Array)
+      expect(@gradebook.students_below(75)).to be_an(Array)
       expect(@gradebook.students_below(75).count).to eq(1)
       expect(@gradebook.students_below(75)[0]).to eq(student3)
       expect(@gradebook.students_below(85).count).to eq(2)
-
     end 
 
   end 
-
 end 
