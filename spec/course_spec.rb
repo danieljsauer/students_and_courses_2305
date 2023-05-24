@@ -25,8 +25,8 @@ RSpec.describe Course do
       it "can enroll students into course" do 
         student1 = Student.new({name: "Morgan", age: 21})
         student2 = Student.new({name: "Jordan", age: 29}) 
-        course.enroll(student1)    
-        course.enroll(student2)    
+        @course.enroll(student1)    
+        @course.enroll(student2)    
         expect(@course.students).to eq([student1, student2])
         expect(@course.students.count).to eq (2)
       end 
@@ -35,10 +35,20 @@ RSpec.describe Course do
         expect(@course.full?).to be false
         student1 = Student.new({name: "Morgan", age: 21})
         student2 = Student.new({name: "Jordan", age: 29}) 
-        course.enroll(student1)    
-        course.enroll(student2)  
+        @course.enroll(student1)    
+        expect(@course.full?).to be false
+        @course.enroll(student2)  
         expect(@course.full?).to be true 
       end
-       
+      
+      it "cannot add more students after capacity limit" do 
+        student1 = Student.new({name: "Morgan", age: 21})
+        student2 = Student.new({name: "Jordan", age: 29}) 
+        student3 = Student.new({name: "Jaime", age: 30})
+        @course.enroll(student1)    
+        @course.enroll(student2)    
+        expect(@course.enroll(student3)).to eq("Class is full!")
+      end 
     end 
+
 end
