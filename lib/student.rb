@@ -8,6 +8,17 @@ class Student
     @age = information[:age]
     @scores = []
   end
-  
-  
+
+  def log_score(score)
+    @scores << score
+  end 
+
+  def grade
+    average = 0.0
+    @scores.each do |score|
+      average +=score 
+    end 
+    average = average/@scores.count 
+    average
+  end 
 end

@@ -22,13 +22,13 @@ RSpec.describe Student do
   end 
 
   describe "log score and grade methods" do 
-    xit "can add scores into the scores array" do 
+    it "can add scores into the scores array" do 
       @student.log_score(89)
       @student.log_score(78)
       expect(@student.scores).to eq([89, 78])
       expect(@student.scores.count).to eq(2)
     end  
-    xit "can return the average of the student scores" do
+    it "can return the average of the student scores" do
       @student.log_score(89)
       @student.log_score(78)
       expect(@student.grade).to eq(83.5) 
