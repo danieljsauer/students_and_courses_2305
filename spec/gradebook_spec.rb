@@ -23,14 +23,29 @@ RSpec.describe Course do
   end 
   
   describe "gradebook methods" do 
-      xit "can add courses to its course book" do 
-      @gradebook.addcourse("Mod_1", 30)
-      @gradebook.addcourse("Finance", 45)
+    it "can add courses to its course book" do 
+      @gradebook.add_course("Mod_1", 30)
+      @gradebook.add_course("Finance", 45)
       expect(@gradebook.courses[0].name).to eq("Mod_1")
       expect(@gradebook.courses[0].capacity).to eq(30)
       expect(@gradebook.courses[1].name).to eq("Finance")
       expect(@gradebook.courses[1].capacity).to eq(45)
       expect(@gradebook.courses.count).to eq(2)
+    end 
+
+    it "can return students enrolled in all courses" do 
+      course1 = @gradebook.add_course("Mod_1", 30)
+      course2 = @gradebook.add_course("Finance", 45)
+      student1 = Student.new({name: "Morgan", age: 21})
+      student2 = Student.new({name: "Jordan", age: 29}) 
+      student3 = Student.new({name: "Jaime", age: 30})
+      course1.enroll(student1)
+      course1.enroll(student2)
+      course2.enroll(student3)
+      expect(@gradebook.list_all_students).to be_a(Hash)
+      expect(@gradebook.list_all_students.count).to eq(3)
+      expect(@gradebook.list_all_students.key).to be_an_instance_of(Course)
+      expect(@gradebook.list_all_students.values).to be_an_instance_of(Student)
     end 
 
 
