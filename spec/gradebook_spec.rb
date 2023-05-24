@@ -2,6 +2,7 @@ require 'rspec'
 require './lib/course'
 require './lib/student'
 require './lib/gradebook'
+require 'pry'
 
 RSpec.describe Course do 
   before(:each) do
@@ -43,13 +44,10 @@ RSpec.describe Course do
       course1.enroll(student2)
       course2.enroll(student3)
       expect(@gradebook.list_all_students).to be_a(Hash)
-      expect(@gradebook.list_all_students.count).to eq(3)
-      expect(@gradebook.list_all_students.key).to be_an_instance_of(Course)
-      expect(@gradebook.list_all_students.values).to be_an_instance_of(Student)
+      expect(@gradebook.list_all_students.count).to eq(2)
+      expect(@gradebook.list_all_students.keys.first).to be_an_instance_of(Course)
+      expect(@gradebook.list_all_students.values.first[0]).to be_an_instance_of(Student)
     end 
-
-
-
 
   end 
 
