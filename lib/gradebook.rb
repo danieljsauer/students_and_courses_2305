@@ -7,5 +7,8 @@ class Gradebook
     @courses = []
   end 
 
-  
+  def add_course(name, capacity)
+    new_course = Course.new(name, capacity)
+    @courses << new_course
+  end 
 end
