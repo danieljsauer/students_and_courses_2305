@@ -49,6 +49,27 @@ RSpec.describe Course do
       expect(@gradebook.list_all_students.values.first[0]).to be_an_instance_of(Student)
     end 
 
+    it "can return students under a certain threshold" do 
+      course1 = @gradebook.add_course("Mod_1", 30)
+      course2 = @gradebook.add_course("Finance", 45)
+      student1 = Student.new({name: "Morgan", age: 21})
+      student2 = Student.new({name: "Jordan", age: 29}) 
+      student3 = Student.new({name: "Jaime", age: 30})
+      course1.enroll(student1)
+      course1.enroll(student2)
+      course2.enroll(student3)
+
+      student1.log_score(90)
+      student2.log_score(80)
+      student3.log_score(70)
+
+      expect(@gradebook.students_below(75)). to be_an(Array)
+      expect(@gradebook.students_below(75).count).to eq(1)
+      expect(@gradebook.students_below(75)[0]).to eq(student3)
+      expect(@gradebook.students_below(85).count).to eq(2)
+
+    end 
+
   end 
 
 end 
