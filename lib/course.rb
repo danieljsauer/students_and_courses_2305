@@ -8,4 +8,21 @@ class Course
     @students = []
   end 
 
+  def enroll(student)
+    if @students.count < capacity
+    @students << student
+    else 
+      "Class is full!"
+    end 
+  end 
+
+  def full?
+    if @students.count >= capacity
+      true 
+    else 
+      false 
+    end 
+  end 
+
+
 end
